@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <h1>Login Page.....</h1>
+    </div>
+    <div>
+        UserName: <input type="text" id="userName" />
+        Password:<input type="password" id="password" />
+        <button id="loginSubmit">Login</button>
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#loginSubmit").on('click', function () {
+                alert("Login Click..");
+                var userName = "Surya", password = "Surya";
+                
+                var data = {
+                    "userName": userName, "password": password
+                }
+                GetUserLogin(data);
+            });
+        });
+        function GetUserLogin(data) {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "GetUserByCredientials",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    alert(JSON.stringify(data));
+                },
+                error: function (result) {
+                    alert("Errrrror");
+                    console.log(result);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
